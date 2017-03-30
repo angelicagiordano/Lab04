@@ -94,7 +94,9 @@ public class SegreteriaStudentiController {
     	txtNome.setText(s.getNome());
     	txtCognome.setText(s.getCognome());
     	}else{
-    		txtResult.setText("Studente non trovato");
+    		txtResult.setText("Studente non trovato!!");
+    		
+    		
     	}
     }
 
