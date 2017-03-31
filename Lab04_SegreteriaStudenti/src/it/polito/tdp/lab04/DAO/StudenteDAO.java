@@ -87,4 +87,45 @@ public class StudenteDAO {
 
 	}
 
+	public boolean aggiungiStudente(Studente s) {
+
+		final String sql = "INSERT INTO studente ( matricola,cognome, nome) VALUES(?,?,?)";
+
+		boolean res=false;
+		//HashMap<Integer,Studente> studenti = new HashMap<Integer,Studente>();
+
+		try {
+			Connection conn = ConnectDB.getConnection();
+			PreparedStatement st = conn.prepareStatement(sql);
+
+			
+			st.setInt(1, s.getMatricola()); //al punto interrogativo sostituisco il codice
+			st.setString(2, s.getCognome());
+			st.setString(3, s.getNome());
+			
+			int result = st.executeUpdate();
+
+			conn.close();
+			if (result==1) {
+
+				// Crea un nuovo JAVA Bean Corso
+				// Aggiungi il nuovo Corso alla lista
+				
+				res=true;
+				
+			}else{
+				res=false;
+			}
+
+			return res;
+			
+
+		} catch (SQLException e) {
+			// e.printStackTrace();
+			throw new RuntimeException("Errore Db");
+		}
+
+
+	}
+	
 }

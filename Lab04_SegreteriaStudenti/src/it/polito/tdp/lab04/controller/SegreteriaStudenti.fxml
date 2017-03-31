@@ -41,8 +41,8 @@
                   <Label prefHeight="17.0" prefWidth="63.0" text="Studenti:" />
                   <TextField fx:id="txtMatricola" />
                   <Button fx:id="btnCercaNome" mnemonicParsing="false" onAction="#doCercaNome" prefHeight="25.0" prefWidth="30.0" style="-fx-background-color: #7aff69;" textFill="#7aff69" />
-                  <TextField fx:id="txtNome" editable="false" />
-                  <TextField fx:id="txtCognome" editable="false" />
+                  <TextField fx:id="txtNome" editable="true" />
+                  <TextField fx:id="txtCognome" editable="true" />
                </children>
             </HBox>
             <HBox alignment="CENTER" spacing="350.0">
@@ -53,7 +53,7 @@
             </HBox>
             <HBox alignment="CENTER">
                <children>
-                  <TextArea fx:id="txtResult" />
+                  <TextArea fx:id="txtResult" editable="false"/>
                </children>
             </HBox>
             <HBox alignment="CENTER_RIGHT">
