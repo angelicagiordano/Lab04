@@ -53,6 +53,7 @@ public class SegreteriaStudentiController {
     
     public void setModel(Model model){
     	this.model=model;
+    	comboCorso.getItems().add(new Corso("",0,"",0));
     	comboCorso.getItems().addAll(model.getCorsi());   	
     	
     }
@@ -61,13 +62,21 @@ public class SegreteriaStudentiController {
     void doCercaCorsi(ActionEvent event) {
 
     	Studente s=model.getStudente(Integer.parseInt(txtMatricola.getText().trim()));
-    	if(s!=null){
+    	Corso corso= comboCorso.getValue();
+    	
+    	if(s!=null && corso.getNome().compareTo("")==0){
     		for(Corso c : model.getCorsiFrequentati(s)){
         		txtResult.appendText(c.toString()+"\n");
         	}
     		
     	}else{
     		txtResult.setText("Studente non trovato");
+    	}
+    	if(s!=null && corso.getNome().compareTo("")!=0){
+    		if(model.studenteIsIscrittoCorso(s, corso)){
+    			txtResult.setText("Studente già iscritto");
+    		}else
+    			txtResult.setText("Studente non iscritto");
     	}
     }
 

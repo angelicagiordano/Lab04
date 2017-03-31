@@ -8,11 +8,11 @@ import it.polito.tdp.lab04.DAO.*;
 
 public class Model {
 
-	List <Corso> corsi;
+	//List <Corso> corsi;
 
 	public Model() {
 		
-		corsi= new LinkedList<Corso>();
+		//corsi= new LinkedList<Corso>();
 	}
 	
 	public List<Corso> getCorsi(){
@@ -37,8 +37,11 @@ public class Model {
 		sdao.setCorsi(s);
 		return s.corsiFrequentati;
 	}
-	
+	public boolean studenteIsIscrittoCorso(Studente s, Corso c){
+		
+		IscrizioneDAO idao= new IscrizioneDAO();
+		return idao.getIsIscritto(s, c);
+	}
 
-	
 	
 }
