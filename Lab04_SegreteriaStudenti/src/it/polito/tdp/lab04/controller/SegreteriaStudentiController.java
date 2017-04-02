@@ -125,17 +125,29 @@ public class SegreteriaStudentiController {
     @FXML
     void doIscrivi(ActionEvent event) {
 
-    	if(!txtMatricola.getText().matches("[0-9]*") || !txtNome.getText().matches("[a-zA-Z]*") || !txtCognome.getText().matches("[a-zA-Z]*")){
+    	if(!txtMatricola.getText().matches("[0-9]*") || !txtNome.getText().matches("[a-zA-Z]*") || !txtCognome.getText().matches("[a-zA-Z]*") || comboCorso.getValue()==null){
     		txtResult.setText("Errore: inserire dati validi");
     	}else{
-    		Studente s= new Studente(Integer.parseInt(txtMatricola.getText().trim()), txtNome.getText(),txtCognome.getText(), "");
-    	if(model.iscrivi(s)){
+    		//Studente s= new Studente(Integer.parseInt(txtMatricola.getText().trim()), txtNome.getText(),txtCognome.getText(), "");
+    		Corso c= comboCorso.getValue();
+    		
+    		Studente s=model.getStudente(Integer.parseInt(txtMatricola.getText().trim()));
+        	if(s.getNome().compareTo("")!=0 &&s.getCognome().compareTo("")!=0){
+        	txtNome.setText(s.getNome());
+        	txtCognome.setText(s.getCognome());
+        	if(model.iscrivi(s, c)){
+            	
+        		txtResult.setText("Studente iscritto");
+        		}else
+        			txtResult.setText("Studente non iscritto");
+        	
+        	}
+        	else{
+        		txtResult.setText("Studente non trovato!!");
+        		
+        		
+        	}	}
     	
-    		txtResult.setText("Studente iscritto");
-    		}else
-    			txtResult.setText("Studente non iscritto");
-    	
-    	}
     		
     }
 

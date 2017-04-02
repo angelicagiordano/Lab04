@@ -43,8 +43,8 @@ public class Model {
 		return idao.getIsIscritto(s, c);
 	}
 
-	public boolean iscrivi(Studente s){
-		StudenteDAO sdao= new StudenteDAO();
-		return sdao.aggiungiStudente(s);
+	public boolean iscrivi(Studente s, Corso c){
+		IscrizioneDAO idao= new IscrizioneDAO();
+		return idao.iscriviStudente(s, c);
 	}
 }

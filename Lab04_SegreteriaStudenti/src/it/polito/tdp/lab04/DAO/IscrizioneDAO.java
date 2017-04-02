@@ -34,4 +34,44 @@ public class IscrizioneDAO {
 			// e.printStackTrace();
 			throw new RuntimeException("Errore Db");
 		}
-}}
+}
+
+	public boolean iscriviStudente(Studente s, Corso c) {
+
+		final String sql = "INSERT INTO iscrizione ( matricola, codins) VALUES(?,?)";
+
+		boolean res=false;
+		//HashMap<Integer,Studente> studenti = new HashMap<Integer,Studente>();
+
+		try {
+			Connection conn = ConnectDB.getConnection();
+			PreparedStatement st = conn.prepareStatement(sql);
+
+			
+			st.setInt(1, s.getMatricola()); //al punto interrogativo sostituisco il codice
+			st.setString(2, c.getCodice());
+			
+			
+			int result = st.executeUpdate();
+
+			conn.close();
+			if (result==1) {
+
+				// Crea un nuovo JAVA Bean Corso
+				// Aggiungi il nuovo Corso alla lista
+				
+				res=true;
+				
+			}else{
+				res=false;
+			}
+
+			return res;
+			
+
+		} catch (SQLException e) {
+			// e.printStackTrace();
+			throw new RuntimeException("Errore Db");
+		}
+
+	}}
